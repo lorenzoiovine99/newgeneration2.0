@@ -1,0 +1,443 @@
+/* Rimuove margini e padding predefiniti */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
+    font-family: 'Calibri', sans-serif;
+}
+
+
+/* Imposta l'header */
+.header {
+    position: fixed; /* Fissa l'header in alto */
+    top: 0;
+    left: 0;
+    width: 100%; /* Occupa tutta la larghezza */
+    height: 17vh; /* Altezza fissa per l'header */
+    z-index: 1000; /* Porta l'header in primo piano */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #3c3b3b;
+    background-size: cover;
+    background-image: url('images/header.jpg'); /* URL del logo PNG */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
+    box-sizing: border-box; /* Include il padding nel calcolo delle dimensioni */
+}
+
+.logo {
+    display: flex; /* Attiva Flexbox per allineare i loghi */
+    align-items: center; /* Allinea verticalmente i loghi al centro */
+    gap: 35px; /* Spaziatura tra i loghi */
+    margin-left: 30px; /* Sposta i loghi un po' più a destra */
+}
+
+/* Primo logo: gestisci altezza e larghezza */
+.logo-primary {
+    max-height: 14vh; /* Altezza personalizzata */
+    width: auto; /* Mantiene le proporzioni */
+}
+
+/* Secondo logo: gestisci altezza e larghezza */
+.logo-secondary {
+    height: 8vh; /* Altezza diversa per il secondo logo */
+    width: auto; /* Mantiene le proporzioni */
+}
+
+.menu {
+    display: flex;
+    gap: 40px;
+    margin-right: 30px; /* Sposta i loghi un po' più a destra */
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.menu a:hover {
+    color: #000000;
+}
+
+/* Menu Hamburger */
+.hamburger {
+    display: none; /* Nascosto per default */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+.hamburger:hover div {
+    background-color: #000000; /* Cambia colore al passaggio del mouse */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none; /* Nascosto inizialmente */
+    flex-direction: column;
+    background-color: #3c3b3b; /* Sfondo scuro */
+    position: absolute;
+    top: 13vh; /* Posizionato sotto l'header */
+    right: 20px; /* Posizionato a destra */
+    width: 220px; /* Larghezza del menu */
+    padding: 10px 0; /* Spaziatura interna */
+    border-radius: 8px; /* Bordi arrotondati */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
+    opacity: 0; /* Inizia invisibile */
+    transform: translateY(-10px); /* Sollevato di 10px */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Aggiunge animazione */
+    z-index: 1000; /* Porta il menu in primo piano */
+}
+
+.dropdown-menu.show {
+    display: flex; /* Mostra il menu */
+    opacity: 1; /* Rende il menu visibile */
+    transform: translateY(0); /* Rimuove la traslazione */
+}
+
+.dropdown-menu a {
+    padding: 12px 20px; /* Spaziatura interna */
+    text-decoration: none;
+    color: #fff; /* Testo bianco */
+    font-weight: bold;
+    border-bottom: 1px solid #444; /* Linea di separazione */
+    transition: background-color 0.3s ease; /* Aggiunge transizione */
+}
+
+.dropdown-menu a:hover {
+    background-color: #000000;
+    color: #fff;
+}
+
+/* Nasconde il secondo logo su schermi stretti */
+@media (max-width: 1350px) {
+    .logo-secondary {
+        display: none; /* Nasconde il secondo logo */
+    }
+}
+
+
+/* Responsività */
+@media (max-width: 1350px) {
+    .menu {
+        display: none; /* Nasconde il menu normale */
+    }
+
+    .hamburger {
+        display: flex; /* Mostra l'hamburger */
+    }
+
+    .hamburger:hover + .dropdown-menu {
+        display: flex; /* Mostra il menu a tendina */
+    }
+}
+
+/* Sfondo globale con loghi */
+body {
+    background-color: rgba(119, 116, 116, 0.9); /* Sfondo grigio chiaro con trasparenza */
+    background-size: cover;
+    background-image: url('images/sfondo.jpg'); /* URL del logo PNG */
+    background-attachment: fixed !important; /* Rende lo sfondo fisso */
+    align-content: center;
+}
+
+
+/* Contenitore Interno */
+.home .slide-content {
+    background-color: rgba(119, 116, 116, 0.9); /* Sfondo grigio chiaro con trasparenza */
+    background-size: cover;
+    background-image: url('images/sfondo.jpg'); /* URL del logo PNG */    display: flex;
+    flex-direction: row; /* Testo a sinistra, immagine a destra */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 17vh); /* Occupa tutta l'altezza disponibile sotto l'header */
+    margin-top: 17vh;
+    padding: 0;
+    overflow: hidden;
+}
+
+.home .slide-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.home .slide-button:hover {
+    background-color: #333; /* Cambia colore al passaggio del mouse */
+}
+
+
+/* Colonna del Testo */
+.home .text-column {
+    width: 16%; /* Occupa il 40% dello spazio */
+    height: 100%; /* Occupa tutta l'altezza */
+    padding: 5%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+/* Contenitore delle immagini/video sulla destra */
+.home .image-column, .home .video-column {
+    width: 84%; /* Occupa il 60% dello schermo */
+    height: calc(100vh - 17vh); /* Occupa tutta l'altezza disponibile */
+    display: flex;
+    justify-content: flex-end; /* Spinge l'immagine a destra */
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Assicura che immagini e video si adattino senza tagliarsi o deformarsi */
+.home .image-column img,
+.home .video-column video {
+    height: calc(100vh - 17vh); /* Occupa tutta l'altezza disponibile sotto l'header */
+    width: 100%; /* Mantiene le proporzioni senza deformarsi */
+    max-width: none; /* Non supera il contenitore */
+    object-fit: fill; /* Evita di tagliare l'immagine */
+}
+
+/* Posizionamento delle frecce ai bordi estremi */
+.home .swiper-button-next, .home .swiper-button-prev {
+    color: rgb(39, 57, 127);
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+/* Posizionamento esatto delle frecce */
+.home .swiper-button-prev {
+    left: 2px; /* Porta la freccia sinistra al bordo estremo */
+}
+
+.home .swiper-button-next {
+    right: 2px; /* Porta la freccia destra al bordo estremo */
+}
+
+/* Effetto hover più elegante */
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    transform: scale(1.2); /* Ingrandisce leggermente la freccia */
+    opacity: 1; /* La rende completamente visibile */
+}
+
+
+.text-column h1 {
+    font-size: 1.5em;
+    color: #000000;
+    position: relative; /* Necessario per posizionare la linea */
+    display: inline-block; /* Restringe la larghezza al testo */
+    text-align: left; /* Allinea il testo (modifica se necessario) */
+    border-bottom: 3px solid #000000; /* Linea colorata sotto */
+    padding-bottom: 5px; /* Spazio tra il testo e la linea */
+}
+
+.text-column p {
+    font-size: 1.2em;
+    font-weight: 10;
+    line-height: 1.0;
+    color: #ffffff;
+    max-width: 600px;
+    margin-top: 8px; /* Margine superiore */
+    margin-bottom: 8px; /* Margine inferiore */
+}
+
+/* Contenitore Interno */
+.chisiamo .content-container {
+    background-color: rgba(119, 116, 116, 0.9); /* Sfondo grigio chiaro con trasparenza */
+    background-size: cover;
+    background-image: url('images/sfondo.jpg'); /* URL del logo PNG */    display: flex;
+    flex-direction: row; /* Testo a sinistra, immagine a destra */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 17vh); /* Occupa tutta l'altezza disponibile sotto l'header */
+    margin-top: 17vh;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Colonna del Testo */
+.chisiamo .text-column {
+    flex: 1; /* Occupa lo spazio disponibile */
+    max-width: 45%; /* Occupa metà schermo */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    padding-left: 5vh;
+}
+
+/* Colonna del Video */
+.chisiamo .video-column {
+    flex: 1; /* Occupa lo spazio disponibile */
+    display: flex;
+    align-items: center; /* Centra verticalmente il video */
+    justify-content: right;
+    padding-right: 5vh;
+}
+
+.chisiamo .video-column video {
+    width: 600px; /* Larghezza personalizzata */
+    height: 330px; /* Mantiene le proporzioni del video */
+    border-radius: 40px; /* Angoli arrotondati per estetica */
+    box-shadow: 0 4px 8px rgba(74, 73, 73, 0.2); /* Aggiunge un'ombra */
+}
+
+.chisiamo .important {
+    color: #000000; /* Altro colore */
+}
+
+.scopridipiu .form-container {
+    background-color: rgba(119, 116, 116, 0.9); /* Sfondo grigio chiaro con trasparenza */
+    background-size: cover;
+    background-image: url('images/sfondo.jpg'); /* Sfondo */
+    
+    display: flex;
+    flex-direction: column; /* Organizza il contenuto in colonna */
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: calc(100vh - 17vh); /* Usa min-height invece di height */
+    padding-top: 17vh; /* SPINGE TUTTO SOTTO L'HEADER */
+    overflow: hidden;
+}
+
+.scopridipiu iframe {
+    width: 50%;
+    height: calc(100vh - 17vh); /* Altezza del form */
+    border: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: white; /* Sfondo bianco SOLO sotto il form */
+    border-radius: 5px; /* Bordo arrotondato per estetica */
+}
+
+/* ✅ Contenitore principale dei contatti */
+.contatti .contact-container {
+    background-color: rgba(119, 116, 116, 0.9); /* Sfondo grigio chiaro con trasparenza */
+    background-size: cover;
+    background-image: url('images/sfondo.jpg'); /* Sfondo */
+    display: flex;
+    justify-content: space-between; /* Info a sinistra, mappa a destra */
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 17vh); /* Occupa tutta l'altezza disponibile sotto l'header */
+    margin-top: 17vh;
+    overflow: hidden;
+}
+
+/* ✅ Colonna delle informazioni (sinistra) */
+.contatti .text-column {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ✅ Colonna della mappa (destra) */
+.contatti .map-column {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contatti .map-column iframe {
+    max-width: 600px;
+    max-height: 400px;
+    border-radius: 10px; /* Angoli arrotondati */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Layout per smartphone (max-width: 768px) */
+@media (max-width: 1024px) {
+    .text-column h1 {
+        font-size: 2em;
+        color: #000000;
+        position: relative; /* Necessario per posizionare la linea */
+        display: inline-block; /* Restringe la larghezza al testo */
+        text-align: center; /* Allinea il testo (modifica se necessario) */
+        border-bottom: 3px solid #000000; /* Linea colorata sotto */
+        padding-bottom: 5px; /* Spazio tra il testo e la linea */
+    }
+    
+    .text-column p {
+        font-size: 1.2em;
+        font-weight: 10;
+        line-height: 1.0;
+        color: #ffffff;
+        max-width: 600px;
+        text-align: center;
+        margin-top: 8px; /* Margine superiore */
+        margin-bottom: 8px; /* Margine inferiore */
+    }
+
+    .home .slide-content {
+        align-items: center;
+        text-align: center;
+        background-color: rgba(119, 116, 116, 0.9); /* Sfondo grigio chiaro con trasparenza */
+        background-size: cover;
+        background-image: url('images/sfondo.jpg'); /* URL del logo PNG */    display: flex;
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        height: calc(100vh - 17vh); /* Occupa tutta l'altezza disponibile sotto l'header */
+        flex-direction: column-reverse;
+        padding: 0;
+    }
+
+    /* VIDEO: Sempre sopra e adatta altezza */
+    .home .image-column, .home .video-column {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .home .image-column img, .home .video-column video {
+        width: 100%; /* Occupa tutta la larghezza dello schermo */
+        height: auto;
+        max-height: none; /* Non supera il 60% dell'altezza dello schermo */
+        object-fit: contain;
+    }
+
+    /* TESTO: Inizia subito sotto */
+    .home .text-column {
+        width: 95%;
+        padding: 0px;
+        font-size: 0.9em;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
